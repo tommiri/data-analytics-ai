@@ -4,6 +4,6 @@ df = pd.read_csv('diabetes.csv')
 
 desc = df.describe()
 
-df[['Pregnancies', 'Glucose', 'BloodPressure']].hist()
+print(desc)
 
-diabetes = df['Outcome'].value_counts()
+df.hist()
