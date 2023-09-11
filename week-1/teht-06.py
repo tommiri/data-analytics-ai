@@ -19,4 +19,3 @@ ml = Murtoluku(1024, 512)
 ml.tulosta()
 ml.sievenna()
 ml.tulosta()
-

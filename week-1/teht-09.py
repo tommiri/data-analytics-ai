@@ -1,6 +1,11 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 
 df = pd.read_csv('diabetes.csv')
 
-print(len(df.Age))
+countsByAge = df.value_counts('Age')
+
+print(countsByAge)
+
+countsByOutcome = df.value_counts('Outcome')
+
+print(countsByOutcome)
