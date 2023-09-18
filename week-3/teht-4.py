@@ -6,9 +6,18 @@ df = pd.read_csv("titanic.csv")
 
 bins = list(range(0, 95, 5))
 labels = bins[1:]
-df["AgeGroup"] = pd.cut(df["Age"], bins=bins, labels=labels, right=False)
-
+df["AgeGroup"] = pd.cut(df["Age"], bins=bins, labels=labels, right=True)
 agc = pd.DataFrame(df["AgeGroup"].value_counts()).reset_index()
+sns.barplot(x="AgeGroup", y="count", data=agc)
+plt.show()
+
+sgvc = df[df["Survived"] == 1]["Gender"].value_counts()
+plt.pie(sgvc, labels=["naiset", "miehet"], autopct="%1.1f%%", startangle=270)
+plt.title(
+    f"matkustajia: {len(df)}\nselviytyneet miehet: {sgvc['male']}\nselviytyneet naiset: {sgvc['female']}"
+)
+plt.ylabel("Selviytyneet")
+plt.show()
 
 df.drop(df.loc[df["PClass"] == "*"].index, inplace=True)  # Poistetaan PClass '*'
 df["Saved"] = df["Survived"].apply(lambda x: "no" if x == 0 else "yes")
